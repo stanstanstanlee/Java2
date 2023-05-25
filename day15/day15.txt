@@ -1,0 +1,540 @@
+★★★ MVC ★★★ 너무너무 중요행 ★★★ 현업 강의내용 90% 이거임 ★★★
+인터넷지식으로 습득 할 수 있지 않음. JSP라는 서버프로그램에 등장함 
+이걸 모르면 일을 할 수가없어용. 언어가 무엇이든 절대로 안바뀌는 구조임
+-> MVC 템플릿을 제공하는 Spring 프레임워크 
+M Model 모델
+	데이터(DB)와 관련된 로직을 담당하는 파트
+	1) DB에서 	데이터를 다루는 방법에 대한 코딩
+		== SQL
+ 	2) DB의 데이터를 <-> JAVA 환경으로 가져올수있도록
+		== JDBC, DAO Data Access Object
+		: CRUD 기능을 구현하는 파트(사용자에 제공할 서비스를 코딩)
+		: 비즈니스 메소드, 핵심 로직
+	3) JAVA에서 데이터를 정의하는 코딩
+		== VO Value Object
+
+V View 뷰 (쉬운데 귀찮아요)
+	사용자가 보는 화면에대한 모든것을 담당하는 파트
+	사용자 편의성 (UI/UX) 고려
+	유효성 검사 
+	사용자와의 입출력을 담당하는 파트
+
+
+C Controller 컨트롤러
+	View <---> Model을 연결하는 파트
+	★MVC 패턴의 핵심은,
+		M과 V가 절대 서로 딱! 붙어있지 않게 하는것
+		무적권 분리되어있어야함!!!
+		사용자가 DB에 직접접근하는일 절대로 없어야 함 !!!
+		모델은 컨트롤러한테만 이야기 할 수 있고
+		뷰 역시 컨트롤러 한테만 이야기 할 수 있다. 
+
+ex1) 학생부 프로그램
+사용자(클라이언트)가 ON
+◇V가 "어떤 메뉴를 이용할래?"
+사용자가 "학생목록출력" 입력
+◇V가 C한테 "C야, 사용자가 학생목록출력 이용한대~"
+C는 M한테가서, "◆M아, 학생목록 데이터좀 줄래?"
+◆M은 DB에 가서 학생목록 데이터 받아옴 SELECT * FROM STUDENT;
+◆M이 C한테 받아온 학생목록 데이터를 다시 줌
+C는 ◇V한테가서, "◇V야, 여기 너가 찾던 학생목록 데이터~"
+◇V는 사용자(console)에게 학생목록 데이터 출력해줌
+
+ex2) 웹툰
+사용자는 웹툰 어플을 ON
+	할일 : '웹툰목록 데이터를 불러와서 화면에 출력'
+
+C가 M한테가서 "웹툰목록 데이터 좀 줘~"
+M이 DB에서 웹툰목록 데이터를 받아옴
+M은 받은 데이터를 C한테 다시 줌
+C는 M에게 받은 데이터를 V에게 전달
+V는 사용자(화면)에게 C로부터 받아온 데이터를 출력
+
+★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+ MVC의 장점
+1. 유지보수 용이
+2. 모듈화를 강제해서 개발의 편의성 도모
+	ex) 레고-블록이 작을수록 다양한 output
+3. 프로젝트 코드가 '낮은 결합도'를 가짐 <- 암기 유지보수 상승
+	결합도: 코드 의존도가 존재 
+		main에 다 때려박기 vs 모듈화 하기 
+4. 프로젝트 코드가 '높은 응집도'를 가짐 <- 암기 유지보수 상승
+	응집도: 관련있는 코드들끼리 하나의 페이지에 작성하는것
+				int 학생수=5;
+	for(학생5명)		for(학생수)	
+	for(학생5명)		for(학생수)
+	while(5명이 될때까지)	while(학생수가 될때까지)
+	for(학생5명)		for(학생수)
+	'응집도 낮음'		'응집도 높음'
+
+"결합도를 낮추고 응집도를 높이기 때문에 유지보수가 용이 해지기 때문에"
+★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+
+
+==============================================================
+Client 
+main
+controller 객체화 먼저 
+	public StudentCtrl() { //생성자
+		this.view = new StudentView(); //객체화
+		this.dao = new StudentDAO(); //객체화
+	}
+
+	StudentView 멤버변수 없음
+	public StudentDAO() { //생성자
+		this.datas=new ArrayList<StudentVO>(); //멤버변수 초기화
+		this.datas.add(new StudentVO(1001,"홍길동",85));
+		this.datas.add(new StudentVO(1002,"아무무",92));
+		this.datas.add(new StudentVO(1003,"티모",51));
+	}
+
+app.startApp();
+
+public void startApp() {
+		while(true) {
+			view.printMenu();
+
+	public void printMenu() {
+		System.out.println("===학생부 프로그램===");
+		System.out.println("1. 목록출력");
+		System.out.println("2. 학생검색");
+		System.out.println("3. 정보변경");
+		
+	}
+PK는 사용자로부터 입력받으면 안됨 !!!!
+ID를 입력받을수는있으나, "중복검사"를 함! 
+시스템에서 int값을 ㅜㅂ여해야함!!!!!
+
+
+
+==============================================================
+
+
+팀플 과제) 30일에 발표 코드 
+	설계서 설명, 시연, -> 20분을 넘지않게!
+	PPT XXXXX
+	발표자는 여러분들이 정하세욥!~~
+	능단평 Test02 코드를 MVC 패턴으로 작성한 것
+
+	M 2 - V 2(3) - C 2 
+
+★ 설계를 꼼꼼히 하는것이 무엇보다 중요함!!!!!
+	10개월->8개월
+	1) 변수명
+	2) 메서드명
+		메서드 시그니처
+		input 개수와 타입
+		output 타입
+
+	3) 클래스 및 객체 이름들
+	4) 사용할 기능
+	5) 개발기간 
+
+
+★ 01. syso()는 오직 VIEW에서만 사용가능!
+★ 02. CRUD(DAO 메서드)는 output이 boolean!
+
+★ 03. CRUD(DAO 메서드)는
+	insert
+	selectAll ( getAll )
+	selectOne ( getOne )
+	update
+	delete
+	로 고정 -> "오버로딩"
+
+
+============================================================== 
+오늘 과제) 새로운 프로그램 작성하기 == 자판기 프로그램
+			-> 음료수 클래스
+			PK, 이름, 가격, 재고
+			유효성 최대한 
+			음료추가(), 음료목록출력(),음료1개구매(),음료삭제()			
+
+	C, R, U, D 기능 넣어서
+	MVC 패턴으로 작성하기 
+ -> 내일 아침에 풀이할 예정
+	10:00 
+	~10:00까지 개인과제 질의응답 <<
+
+
+================================
+§설계서
+
+[ 과제 ] //Product class
+-----------------------
+상품 : PK,이름,가격,재고
+
+[사용자]
+1. 음료목록출력() Read
+   재고없는상품은 [품절] 
+
+2. 음료1개구매() Update
+	- 재고 누적합 
+
+3. 음료추가() Create 
+
+4. 음료삭제() Delete
+
+5. 프로그램종료
+--------------------
+
+[ 패키지 ] 
+
+view, model, controller, client
+
+[ 클래스 ]
+
+ProductView	ProductVO	ProductCtrl	Client
+		ProductDAO
+
+----------------------
+
+※※ProductView※※
+// main()을 동작시키는것이 목표가아님!
+// main 만들지 않습니다
+	[멤버변수]
+		- 인스턴스변수 
+			- 없음
+		- 클래스변수
+			- 스캐너 입력 받음 << 바로 초기화
+			- [사용자]최대메뉴개수 << 바로 초기화
+
+
+	[생성자]
+	필요 없음 초기화 할거 없음
+
+	[메서드]
+
+	public void printMenu() { // 사용자메뉴출력() 
+		syso [사용자]
+		1. 음료목록출력 R
+		2. 음료구매 U
+		3. 음료추가 C
+		4. 음료삭제 D
+		5. 프로그램종료
+
+	}
+	
+●	//기능 : 사용자모드에서 메뉴선택시 입력을 저장하는 기능
+	 // +유효성 검사 : 문자열 입력, 선택권 밖 정수 입력 
+	INPUT : 없음
+	OUTPUT : int num(사용자가 선택할 메뉴 번호)
+	
+	public int getMenuNum() {} 
+		sc사용
+		try catch 
+		if(조건식) 사용자메뉴에 있는 번호만 입력
+	
+유효성 : 품절이라고 나와야 함 ==>> toString 재정의 할때??
+
+	등록된 상품이 없는 경우 ==>> model 에서??
+
+	사용자가 입력한 상품이 없는 상품번호라면 ==>>model 에서??
+
+	+유효성 검사 : 1) 정수만, 2) 양수만
+
+	//view는 상품목록 데이터를 가질수 없음; Model이 가지고 있음 ==>> 출력을 하려면 받아와야해요 
+●	기능 : 등록된 상품을 모두 출력 하는 기능 
+
+	INPUT : ArrayList<음료상품> datas 
+	OUTPUT : 없음
+
+	public void printProductList(ArrayList<음료상품> datas ) {
+		syso ==상품목록==
+		
+		for(상품 v : datas) {
+			
+		sysoln(v);
+		}
+	}
+	
+	
+●	//기능 : 사용자가 상품번호를 입력하면 저장 후 반환
+	// +유효성 검사 : 
+			
+	INPUT : 없음
+	OUTPUT : int num 상품번호
+
+	public int getNum() {
+		
+		"상품번호 입력"
+		trycatch 정수만
+		int num=sc.nextInt() 
+		return num; //상품번호반환
+	}
+
+●	// 기능 : 사용자가 개수를 입력하면 저장 후 반환
+	// 
+	INPUT : 없음
+	OUTPUT : int num 개수
+	
+	public int getCnt() {
+		
+		"개수입력"
+		trycatch 정수만
+		int cnt=sc.nextInt() 
+		return cnt; //개수 반환
+	}
+
+●	//기능 : 사용자가 가격을 입력하면 저장 후 반환
+	// +유효성 검사 : 1) 정수만 
+	INPUT : 없음
+	OUTPUT : int price 가격
+	
+	public int getPrice() {
+		"가격 입력"
+		trycatch 정수만
+		int price = sc.nextInt()
+		return price; // 가격 반환
+	}
+
+●	//기능 : 사용자가 상품이름을 입력 하면 저장 후 반환
+	// +유효성 검사 : 정말 그 이름이 맞는지 재확인?
+	INPUT : 없음
+	OUTPUT : String name 상품이름
+	
+	public String getProductName() {
+		"상품이름 입력"
+		String name=sc.next();
+		return name; //상품이름 반환
+	}
+
+●	//기능 : 상품 추가시 안내멘트
+	INPUT : 없음
+	OUTPUT : 없음
+	public void printAddStart() {
+		syso"음료상품 추가를 시작합니다."
+	}
+	
+●	//기능 : 상품 추가 완료시 안내멘트
+	INPUT : 없음
+	OUTPUT : 없음
+	public void printAddEnd() {
+		syso"음료상품 추가완료."
+	}
+
+●	//기능 : 상품 삭제 시작시 안내멘트
+	INPUT : 없음
+	OUTPUT : 없음
+	public void printDeleteStart() {
+		syso"음료상품 삭제를 시작합니다."
+	}
+
+
+●	//기능 : 상품 삭제 완료시 안내멘트
+	INPUT : 없음
+	OUTPUT : 없음
+	public void printDeleteEnd() {
+		syso"음료상품 삭제완료."
+	}
+
+
+●	//기능 : 프로그램 종료시 안내멘트
+	INPUT : 없음
+	OUTPUT : 없음
+	public void printPwrOff() {
+		syso"프로그램을 종료합니다."
+	}
+
+
+●	//기능 : 음료 구매 시작시 안내멘트
+	INPUT : 없음
+	OUTPUT : 없음
+	public void printPurchaseStart() {
+		syso"어떤 음료를 구매 하시겠습니까."
+	}
+
+●	//기능 : 음료 구매 종료시 안내멘트
+	INPUT : 없음
+	OUTPUT : 없음
+	public void printPurchaseEnd() {
+		syso"구매완료!."
+	}
+
+●	//기능 : 상품번호 불일치 실패 안내 멘트
+	INPUT : 없음
+	OUTPUT : 없음
+	public void printFalse() {
+		syso"서비스를 완료할 수 없습니다."
+	}
+
+
+※※ProductVO※※ //음료상품 데이터 그 자체를 의미함
+/*VO도 main만드는 것에 관심 없음 
+ * 멤버변수+getter,setter
+ * toString() 오버라이딩
+ * 생성자(오버로딩)
+ */
+[멤버변수]
+private int num; //PK상품번호
+private String name; //상품이름
+private int price; //상품가격
+private int cnt; //상품제고
+
+[생성자]
+
+public ProductVO(int num, String name, int price, int cnt) {
+	this.num=num;	//초기화
+	this.name=name;
+	this.price=price;
+	this.cnt = cnt; 
+	syso(this.name + "상품 생성 완료!")
+}
+	
+[getter, setter]
+
+[메서드]
+@Override
+public String toString() {
+	return this.num + "번 상품 '" + this.name + "' [" + this.cnt +"] 개 , '"+ price+"원'";
+}
+
+
+※※ProductDAO※※ //모델은 데이터를 가지고 있음
+
+ * DAO 도 main만드는 것에 관심 없음 
+ * CRUD(비즈니스 메서드, 핵심로직)
+ * PK는 사용자로부터 입력받으면 안됨 !!!!
+ID를 입력받을수는있으나, "중복검사"를 함! 
+시스템에서 int값을 부여해야함!!!!!
+
+[멤버변수]
+private ArrayList<ProductVO> datas;//<<== 이것이 모델이 가진 데이터
+private static int PK = 1001;
+
+
+[생성자]
+	public ProductDAO() { //생성자
+		this.datas=new ArrayList<ProductVO>(); //멤버변수 초기화 //객체화
+		this.datas.add(new StudentVO(PK++,"아메리카노",1500,10));
+		this.datas.add(new StudentVO(PK++,"라떼",2000,10));
+		this.datas.add(new StudentVO(PK++,"버블티",3000,10));
+	}
+
+[메서드]
+// C : 상품추가
+	public boolean insert(String name, int cnt, int price) {
+		this.datas.add(new ProductVO(PK++, name, cnt, price)); //PK는 시스템에서 부여하기 때문에 인자에 없음 
+		return true;
+	}	
+
+	
+// R : 목록 출력 
+
+	public ArrayList<ProductVO> selectAll() {
+		return this.datas;
+	}
+
+// U : 구매 
+	기능 : 사용자가 구매선택 입력후 구매할 상품번호 입력; 
+		구매할 개수 입력;
+		
+	INTPUT : int num(상품번호); int cnt
+	OUTPUT : boolean
+	
+	public boolean update (int num, int cnt) {
+			for(int i=0;i<this.datas.size();i++) {
+				if(this.datas.get(i).getNum()==num) {
+					this.datas.get(i).getCnt()*this.datas.get(i).getPrice();
+					this.datas.get(i).getCnt()-=cnt;
+					
+					return true;
+				}
+			}
+			System.out.println("  로그: model: ProductDAO: update(): 구매할 수 있는 상품이 없습니다!");
+			return false;
+	}	
+
+// D : 삭제
+	기능 : 사용자가 삭제선택 입력후 삭제할 상품번호 입력; 
+	INTPUT : int num(상품번호)
+	OUTPUT : boolean
+	public boolean delete(int num) {
+		for(int i=0;i<this.datas.size();i++) {
+			if(this.datas.get(i).getNum()==num) {
+				this.datas.remove(i);
+				return true;
+			}
+		}
+		System.out.println("  로그: model: StudentDAO: delete(): 삭제학 상품번호가 없습니다!");
+		return false;
+	}
+
+
+※※ProductCtrl※※
+[멤버변수]
+private ProductView;
+private ProductDAO;
+
+[생성자]
+public ProductCtrl() {
+	this.view=new StudentView();
+	this.dao=new StudentDAO();
+}
+
+[메서드]
+public void startApp() {
+	while(true) {
+		
+		// 사용자한테 메뉴보여줘!
+		view.printMenu();
+		// 사용자가 뭐 할지 입력받아봐
+		int menuNum=view.getMenuNum();
+		
+		if(1)
+		 목록출력
+		 ArrayList<ProductVO> datas = dao.selectAll();
+		 view.printProductList(datas);
+		
+		else if(2)
+		 구매
+		 상품번호입력
+		 int num = view.getNum();
+		 구매개수입력
+		 int cnt = view.getCnt();
+		 
+		 if ( dao.update(num, cnt) ) {
+			view.구매완료
+		 }
+		 else {
+			view.printFalse()
+		 }
+		 
+		else if(3)
+		 상품추가
+		 view.추가시작멘트
+		 String name = view.getProductName();
+		 int cnt = view.getCnt();
+		 int price = view.getPrice();
+		 dao.insert(name, cnt, price);
+		 view.추가끝멘트
+		 
+		else if(4)
+		 상품삭제
+		 view.삭제시작멘트	
+		 int num = view.getNum();
+		 if ( dao.delete(num) ) {
+			view.삭제완료
+		 } else {
+		 	view.printFalse();
+		 }	 
+		  
+		else if(5)
+		 view.프로그램종료멘트
+		 break;
+
+
+}
+
+}
+
+
+※※Client※※
+main
+ProductCtrl app = new ProductCtrl();
+app.startApp();
+
+
+
+
+
