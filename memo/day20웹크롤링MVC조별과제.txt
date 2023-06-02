@@ -1,0 +1,211 @@
+
+ShoppingVO(상품)
+   번호(PK)
+   이름
+   개봉일,가격,가수,댓글수 등...
+   예매수,조회수,구매횟수 등...
+1. 검색기능이 존재해야함
+2. 가장 인기있는 ㅇㅇ이 무엇인지 출력할수있도록해야함
+3. 관리자모드는 없어도됨
+4. 회원가입시 PK 중복체크 필수
+5. 크롤링으로 샘플데이터 확보하기
+
+
+===============================================================
+※※※※※※※※※※※※※※※※※MemberVO※※※※※※※※※※※※※※※※※
+===============================================================
+[멤버변수]
+   아이디(PK)   String mid
+   비밀번호    String mpw
+   이름       String mName
+
+[생성자] //멤버변수 초기화
+	
+	public MemberVO(String mid,String mpw,String name) {
+		this.mid=mid;
+		this.mpw=mpw;
+		this.name=name;
+	}
+	
+
+[메서드]
+
+	getter, setter 
+	
+
+
+	//오버라이딩
+	//기능 : ㅁㅁ님 이라고 출력 해주는 출력메서드
+	//INPUT : 없음
+	//OUTPUT : 없음
+	@Override
+	public String toString() {
+		return this.name+"님";
+	}
+
+	//오버라이딩
+	//기능 : MemberVO로 받아온 아이디가 ArrayList datas에 저장된 아이디랑 같은지 비교하도록 오버라이딩 
+	//INPUT : 없음
+	//OUTPUT : 없음
+	@Override
+	public boolean equals(Object obj) {		
+		// 아이디(mid)가 같다면, 같은객체!
+		//다운캐스팅
+		return true;
+		return false;
+	}
+
+===============================================================
+※※※※※※※※※※※※※※※※※MemberDAO※※※※※※※※※※※※※※※※※
+===============================================================
+[멤버변수]
+
+	
+	private ArrayList<MemberVO> datas;
+
+
+
+[생성자] 
+	public MemberDAO() {
+
+		datas=new ArrayList<MemberVO>(); //VO객체를 DAO사용
+	
+	}
+
+[메서드]
+	VO에서 가져옴 인자로 받아옴 
+	- getMid, getMpw, getName
+	- setMid, setMpw, setName
+
+●	//기능 : 가입자 목록 출력 (이름) 
+	//INPUT : MemberVO의 객체 
+	//OUTPUT : ArrayList로 반환 (여러개니까) datas 저장된 가입자들
+	public ArrayList<MemberVO> selectAll(MemberVO mVO){
+		return datas;
+	}
+
+●	//기능 : 로그인 할 떄 가입자 아이디 일치 하는지 확인 후 비밀번호 확인  getMid(), getMpw();
+	//INPUT : MemberVO의 객체
+	//OUTPUT : MemberVO 자료형을 반환 (객체 한개니까) 저장된 가입자의 아이디와 비밀번호 
+	public MemberVO selectOne(MemberVO mVO){
+		return mVO(forEach : v)
+		return null;
+	}
+
+
+  insert -> 회원가입
+●	//기능 : 신규 가입자가 입력한 아이디가 중복 아닌지 확인; getMid(),getMpw(),getName()
+	//INPUT : MemberVO의 객체 
+	//OUTPUT : boolean; datas 저장된 가입자의 아이디와 비밀번호 
+
+	public boolean insert(MemberVO mVO) {
+		boolean flag=false;
+			return false;
+			return true;
+	}
+
+  update -> 정보변경
+●	//기능 : 가입자의 정보를 데이터와 확인 후 사용자가 입력한 새로운 비밀번호로 비밀번호 변경
+	//INPUT : MemberVO mVO객체, 아이디와 비밀번호
+	//OUTPUT : true/false ==>> 컨트롤에서 true 경우 비번 변경 성공, false일 경우 실패 출력
+	
+	public boolean update(MemberVO mVO) {
+		return true;
+		return false;
+	}
+  delete -> 회원탈퇴
+●	//기능 : 가입자 회원정보를 member로 전달받아서 datas에 있는 정보인지 확인후 일치하면 remove를 통해 삭제
+	//INPUT : MemberVO mVO 객체 (member로 전달 받음)
+	//OUTPUT : true / false ==>> 컨트롤에서 true 경우 탈퇴 성공, false일 경우 실패 출력
+		return true;
+		return false;
+	}
+===============================================================
+※※※※※※※※※※※※※※※※※ShoppingVO※※※※※※※※※※※※※※※※※
+===============================================================
+[멤버변수]
+	**모두 Private
+   int num; //1001번 번호(PK)          
+   String name; //이름 -> 크롤링해서 받아올것   
+   String price; //가격 -> 크롤링해서 받아올것   
+   int cnt; //구매횟수 -> 처음값 0      
+
+[생성자] 
+	//맴버변수 초기화 
+	ShoppingVO (int num, String name, String price, int cnt) {
+		this.num = num;
+		this.name = name;
+		this.price = price;
+		this.cnt = cnt;
+	}
+
+
+[메서드]
+ - getter / setter
+
+●	//기능 : 쇼핑물 상품 이름과 구매횟수 출력 
+	//INPUT : 없음
+	//OUTPUT : 없음
+
+ 	@Override
+	public String toString() {
+		return this.name+"의 구매횟수: "+this.cnt;
+	}
+
+===============================================================
+※※※※※※※※※※※※※※※※※ShoppingDAO※※※※※※※※※※※※※※※※※
+===============================================================  
+[멤버변수]
+	ArrayList<ShoppingVO> datas;
+
+
+[생성자] 
+	ShoppingDAO () {
+		//크롤링해서 가져올거임 
+		this.datas=Crawling.sample();
+	}
+
+
+[메서드]
+
+●	//기능 : 
+	//INPUT : 없음
+	//OUTPUT : 없음
+public ShoppingVO selectAll(ShoppingVO sVO) {
+	- 이름검색 
+	- 가격검색 "필터검색"
+	
+
+return datas;
+}
+
+●	//기능 : 해당기능 없음
+	//INPUT : ShoppingVO 자료형의 객체
+	//OUTPUT : ShoppingVO 객체 하나
+public ShoppingVO selectOne(ShoppingVO sVO) {
+return null;
+}
+
+●	//기능 : 크롤링해서 가져옴 
+	//INPUT : ShoppingVO 자료형의 객체
+	//OUTPUT : true/false
+public boolean insert(ShoppingVO sVO) {
+	return false;
+}
+
+●	//기능 : 구매할때 마다 해당 제품 구매수++
+	//INPUT : ShoppingVO 자료형의 객체
+	//OUTPUT : true/false
+public boolean update(ShoppingVO sVO) {
+	- 구매할때 그 상품 ++
+	return false;
+}
+
+●	//기능 : 크롤링해서 가져온 것 지울수 없음
+	//INPUT : ShoppingVO 자료형의 객체
+	//OUTPUT : true/false
+public boolean delete(ShoppingVO sVO) {
+	return false;
+}
+
+
