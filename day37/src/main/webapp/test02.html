@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Show Image from JSON using jQuery</title>
+</head>
+<body>
+	<script src="https://code.jquery.com/jquery-3.7.0.min.js"
+		integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+		crossorigin="anonymous"></script>
+	<script type="text/javascript">
+		$.ajax({
+			type : "GET", //전송방식
+			url : "data02.json", //어디서 가져올지
+			dataType : "json", //확장자
+			success : function(data) { //성공 했을 때 
+				 var elem="";
+		         $.each(data,function(index,obj){
+		            elem+="<div>";
+		            elem+=("<span>"+obj.fileName+"</span>");
+		        	 elem+=("<a href=\""+obj.link+"\"><img alt=\"웹 이미지\" src=\""+obj.filePath+"\"></a>");
+		        	 elem+="</div>";
+		         });
+		         $('#image_container').append(elem);			
+			},
+			error : function(err) {
+				console.log('에러발생!');
+				console.log(err.errorText);
+			}
+		});
+	</script>
+	
+	<div id="image_container">
+    <!-- 이미지 마크업 생성 공간 -->
+	</div>
+
+</body>
+</html>
