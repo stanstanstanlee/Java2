@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JS 라이브러리 jQuery</title>
+</head>
+<body>
+
+	<!-- CDN 연결방식 : URL을 직접 기입해서 이미지 바로 다운; 구글에 jQuery CDN 검색  -->
+	<script src="https://code.jquery.com/jquery-3.7.0.min.js"
+		integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+		crossorigin="anonymous"></script>
+
+	<script type="text/javascript">
+		// 원래는 : 도큐멘트에 BOM 중에 window라는게 있는데 window. 창이 모두 로드가 완료 되었다면 (함수()) {}
+		// jQuery 문법으로 작성 :
+		// $(document)가 준비가 되면 .ready(function()) 하나 수행 해줭{
+		// 		console.log('jQuery문법');	
+		//})
+		$(document).ready(function() {
+			console.log('jQuery 문법');
+		});
+	</script>
+
+</body>
+</html>

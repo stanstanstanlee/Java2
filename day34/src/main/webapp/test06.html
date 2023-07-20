@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<h1 id="header"></h1> <!-- 화면구조를 미리 구성 해 놓음  -->
+
+	<script type="text/javascript">
+		function inputID(str) {
+			if (str == 'admin') {
+				document.write('관리자페이지입니다.');
+			} else {
+				document.write('안녕하세요, ' + str + ' 님!');
+			}
+		}
+
+		var input = prompt("아이디를 입력하세요 : ");
+		inputID(input);
+	</script>
+</body>
+</html>

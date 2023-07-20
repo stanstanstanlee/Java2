@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+	.container {
+		display: flex;
+	}
+
+	.box {
+		width: 50px;
+		height: 50px;
+		background-color: lightblue;
+		cursor: pointer;
+		animation: blink-effect 0.5s step-end infinite;
+		animation: vibration 0.1s infinite;
+	}
+
+	.circle {
+		border-radius: 50%;
+	}
+
+	.pink {
+		background-color: lightpink !important;
+	}
+
+	.green {
+		background-color: lightgreen !important;
+	}
+	
+	@keyframes blink-effect {
+        50% {
+          opacity: 0;
+        }
+   }
+   @keyframes vibration {
+        from {
+          transform: rotate(1deg);
+        }
+        to {
+          transform: rotate(-50deg);
+        }
+   }
+   
+   
+   
+</style>
+</head>
+<body>
+
+	<div class="container">
+		<div id="box1" class="box" onclick="test1(this)" onmouseover="test2(this)" onmouseout="test3(this)"></div>
+		<div id="box2" class="box green" onmouseover="test2(this)" onmousedown="test4(this)" onmouseout="test3(this)"></div>
+	</div>
+
+	<script type="text/javascript">
+		function test1(element) {
+			element.classList.add('pink');
+		}
+
+		function test2(element) {
+			if (element.id === 'box2') {
+				element.classList.add('circle');
+			}
+		}
+
+		function test3(element) {
+			element.classList.remove('lightpink');
+			element.classList.remove('circle');
+		}
+
+		function test4(element) {
+			element.classList.remove('circle');
+		}
+	</script>
+
+</body>
+</html>

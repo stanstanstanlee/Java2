@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>결과 페이지</title>
+</head>
+<body>
+	<!-- 뒤로가기 버튼 구현 -->
+	<input type="button" value="뒤로가기 버튼">
+
+	<script type="text/javascript">
+		var obj = document.querySelector('input');
+		obj.onclick=function() {
+			history.back(); // 뒤로 가기 기능 //교재에선 이게 많음
+			//history.go(-1); 이거 써도 됨; 동일하다; 실무에서 이거 더 많음 
+		}
+		
+	</script>
+</body>
+</html>

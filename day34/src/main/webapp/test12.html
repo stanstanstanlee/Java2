@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>실습3</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var randNum = Math.floor(Math.random() * 10) + 1;
+
+		console.log(randNum);
+		var cnt = 0;
+
+		var previousInput = null;
+		while (true) {
+
+			var input = parseInt(prompt(' \'1 ~ 100\' 정수 입력 : '));
+
+			/*
+			if (previousInput != null) {
+				if (input < previousInput && previousInput != randNum) {
+					alert(previousInput + "에서 100 사이를 입력 해 주세용");
+					continue;
+				}
+				else if(input > previousInput && previousInput != randNum) {
+					alert(previousInput + "에서 100 사이를 입력 해 주세용");
+					continue;
+				}
+			}
+			*/
+			
+			if (input < randNum) {
+				if(input < previousInput && previousInput != null) {
+					alert("너 빡때가리냐? 내가 방금 UP 이라고 하지 않았냐?"
+							+previousInput+"에서 100 사이로 다시 입력해라");
+				} else {
+					
+				alert("UP");
+				}
+				cnt++;
+				previousInput = input;
+				continue;
+				
+			} else if (input > randNum) {
+	
+				if(input > previousInput && previousInput != null) {
+					alert("너 빡때가리냐? 내가 방금 DOWN 이라고 하지 않았냐?"
+							+previousInput+"에서 100 사이로 다시 입력해라");
+			
+				} else {
+					
+				alert("DOWN");
+				}
+				
+				cnt++;
+				previousInput = input;
+				continue;
+			} else {
+				document.write(cnt + "번 만에 맞추셨습니다 !")
+				break;
+			}
+
+			
+		}
+	</script>
+</body>
+</html>

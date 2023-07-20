@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>자료형</title>
+</head>
+<body>
+
+<script type="text/javascript">
+	//동일한 변수를 사용하여 선언 한다
+	var str="문자열";
+	var num=15;
+	var flag=true;
+	var arr=[1,2,3];
+	
+	console.log('str: '+str);
+	console.log('num: '+num);
+	console.log('flag: '+flag);
+	console.log('arr: '+arr);
+	
+	//동적타입핑; 에러가 안나용
+	//어느 연산자를 어떤 타이밍에 불러내느냐에 따라 자동변환
+	//배치가 중요함 
+	var x= true+11;
+	console.log('x: '+x);
+	
+	console.log('');
+	
+	var a=null; //null값으로 초기화를 함
+	var b; //초기화를 안함
+	//var c; //선언을 안함
+	console.log('a: '+a);
+	console.log('b: '+b);
+	//console.log('c: '+c);
+	
+	console.log('');
+	
+	console.log(10/0);
+	console.log(2*'apple');
+	console.log(isNaN(113));
+	console.log(isNaN('113'));
+	console.log(isNaN('banana'));
+	
+	
+	
+</script>
+
+</body>
+</html>

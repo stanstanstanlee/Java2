@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>실습 예제 풀이</title>
+<style>
+div, button {
+   margin: 5px;
+}
+
+.box {
+   width: 200px;
+   height: 200px;
+   border: 1px solid black;
+   display: none;
+}
+</style>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+   $(document).ready(function(){
+       $("#wrap button:eq(0)").click(function() {
+             $("#wrap .box").show();
+         });
+         $("#wrap button:eq(1)").click(function() {
+             $("#wrap .box").hide();
+         });
+         $("#wrap button:eq(2)").click(function() {
+             $("#wrap .box").toggle(500);
+         });
+   });
+</script>
+</head>
+<body>
+
+   <div id="wrap">
+      <button>버튼1</button>
+      <button>버튼2</button>
+      <button>버튼3</button>
+      <div class="box">박스</div>
+   </div>
+
+</body>
+</html>

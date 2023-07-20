@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery로 잘하는거 반복문 활용하기</title>
+</head>
+<body>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var datas=['사과','바나나','키위'];
+		$.each(datas,function(index,value){
+			console.log(index+'N번 인덱스: '+ value);	
+		});		
+		var obj={name : '홍길동', score:85};
+		$.each(obj,function(key,value){
+			console.log(key+' 속성의 값= '+ value);	
+		});		
+	});
+
+</script>
+
+
+</body>
+</html>

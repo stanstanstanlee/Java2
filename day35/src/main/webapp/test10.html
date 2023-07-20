@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>form 요소 (데이터를 전송하는 요소)</title>
+</head>
+<body>
+	<!-- form 은 action이 필수요소 이유없이 무조건 -->
+	<form action="#" name="loginForm">
+		<!-- '#' 본인 페이지 라는 뜻 -->
+		<table border="1">
+			<!-- 칸이 많아질 수록 사용자가 알아보기 힘듬  -->
+			<!-- 마우스커서로 칸을 클릭하면 포커스 이벤트를 달기; 사용자가 어디에 적고 있는지 알아보기 쉽게 -->
+			<tr>
+				<td>아이디</td>
+				<td><input type="text" name = "memberId" class="login" placeholder="5자이상"
+					required></td>
+			</tr>
+			<tr>
+				<td>비밀번호</td>
+				<td><input type="password" name = "passwd" class="login" placeholder="10자이상"
+					required></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="submit" value="데이터 전송"></td>
+			</tr>
+		</table>
+	</form>
+
+	<script type="text/javascript">
+		//var elem = document.forms.loginForm; 자바스타일
+		var elem=document.forms['loginForm']; //파이썬 스타일
+		elem.onsubmit=function(){
+			if(this.memberId.value.length < 5){//this.첫번째input.value.length
+				alert('아이디는 5자이상이어야합니다!');
+				this.memberId.focus();//아이디가 5자이상 아닐떄 다시 아이디로 돌아가게
+				return false;
+			}
+			if(this.passwd.value.length < 10) {//this.두번째input.value.length 
+				alert('비밀번호는 10자이상이어야합니다!')
+				this.passwd.focus();//비밀번호로 돌아가게
+				return false;
+			}
+		}
+		
+		var arr=document.querySelectorAll('.login'); //input 여러개가 도착
+		for(var i=0;i<arr.length;i++) {
+			arr[i].onfocus=function(){
+				this.style.backgroundColor='lightblue';
+			}
+			arr[i].onblur=function(){ //빠져나왔을때 다시 색이 원래데로 돌아가야 하니까 
+				this.style.backgroundColor='white';
+			}
+		}
+	</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>선택자를통해 그떄 그떄 함수를 써서 연결</title>
+<style type=text/css>
+img {
+	cursor: pointer;
+}
+</style>
+</head>
+<body>
+	<img id="test" alt="클릭하면 바뀌는 이미지" src="default.jpg">
+
+	<script type="text/javascript">
+	//문서.선택자('선택자').onclick=함수;
+	//이떄 이 함수는 무명함수임. 이름이 없음. 지금은 미리 정의하지 않은 무명의 함수를 연결한 것 
+	document.querySelector('#test').onclick = function() {
+		//this.속성="값";
+		this.src = "test02.jpg";
+	};
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- div로 되어있기 때문에 style을 줄수 있음 -->
+	<!-- 실무에서는 *안씀 -->
+<style type = "text/css">
+
+	div,ul,li { 
+		margin: 5px;
+	}
+
+</style>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		//아이디가 header 인
+		$('#header').css("border","1px solid black");
+		$('ul > li').css("border","3px solid green");
+		$('div.gnb').css("border","3px solid pink"); 
+		$('li[class="test"]').css("background","lightblue");
+	});
+	
+</script>
+</head>
+<body>
+
+<div id="header">
+	<div id = "logo">로고</div>
+	<div> 공지사항 </div>
+</div>
+
+<div id="gnb">
+	<ul>
+		<li>메뉴01
+			<ul>
+				<li>하위메뉴01</li>
+				<li>하위메뉴02</li>
+			</ul>
+		</li>
+		<li>메뉴02</li>	
+		<li>메뉴03</li>	
+		<li>메뉴04</li>
+			
+	</ul>
+
+
+</div>
+
+
+</body>
+</html>

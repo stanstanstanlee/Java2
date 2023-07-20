@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>실습2</title>
+</head>
+<body>
+<script type="text/javascript">
+var intDatas = new Array(7);
+
+	for(var i = 0; i < 7; i++) {
+		var input = prompt('정수입력 : ');
+		intDatas[i] = parseInt(input);
+		if (i==6){
+			break;
+		}
+	}	
+	
+console.log(intDatas);
+
+var sum =0;
+for(var i = 0; i < intDatas.length; i++) {
+	sum+=intDatas[i];
+}
+
+var average = sum / intDatas.length;
+
+console.log("Sum : ",sum);
+console.log("Avg : ", average);
+
+
+</script>
+</body>
+</html>

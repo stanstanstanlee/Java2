@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>실습2+ (동작을 통해 연결하는 이벤트 연결+매번 여러개의 색깔로)</title>
+<style type="text/css">
+#box {
+	width: 150px;
+	height: 50px;
+	background-color: lightgray;
+	cursor: pointer;
+	text-align: center;
+	line-height: 50px;
+}
+</style>
+<script type="text/javascript">
+	var colorDatas =['HotPink','DodgerBlue','BlueViolet','Goldenrod','Tomato']
+	
+	function changeColor(obj) {
+		//Math.floor(Math.random()*랜덤숫자개수)+처음시작하는수
+		//Math.random()*랜덤하게만들숫자의개수
+		var randNum = Math.floor(Math.random()*colorDatas.length);
+		obj.style.backgroundColor = colorDatas[randNum];
+		document.querySelector('#box').innerHTML = colorDatas[randNum];//ID면 #붙여랑
+		//위와 동일 : document.getElementById('box').innerHTML //id라는것이 확정이라 #을 붙이지 않앙
+	}
+</script>
+</head>
+<body>
+
+	<div id="box" onclick="changeColor(this)">lightgray</div>
+
+
+</body>
+</html>

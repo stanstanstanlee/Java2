@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>키보드 입력 이벤트</title>
+<style type="text/css">
+	input {
+		border: 5px solid black;
+	}
+
+</style>
+</head>
+<body>
+							 <!-- function이름을 test라고 할 예정이고 발생한 이벤트
+							 자체를 인자로 넘길 수 있다 -->
+<input type="text" onkeydown="test(event)" placeholder="keydown 이벤트">
+
+<script type = "text/javascript">
+	function test(event) {
+		console.log(event.keyCode);
+		if(event.keyCode == 13) { //13은 enter
+			console.log(event.target);
+			alert(event.target.value);//event에 target이 되는 값
+		}
+	}
+
+</script>
+
+</body>
+</html>

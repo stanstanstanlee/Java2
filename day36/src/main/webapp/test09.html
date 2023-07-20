@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>실습</title>
+<style type="text/css">
+#box {
+  width: 200px;
+  height: 200px;
+  background-color: lightgreen;
+  margin-bottom: 20px;
+}
+.button {
+  width: 100px;
+  height: 30px;
+  margin-right: 10px;
+}
+</style>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"
+	integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+	crossorigin="anonymous"></script>
+<script>
+$(document).ready(function() {
+  $('#button1').click(function() {
+    $('#box').hide();
+  });
+
+  $('#button2').click(function() {
+    $('#box').show();
+  });
+
+  $('#button3').click(function() {
+    $('#box').toggle();
+  });
+});
+</script>
+</head>
+<body>
+  <div id="box"></div>
+  <button id="button1" class="button">버튼1</button>
+  <button id="button2" class="button">버튼2</button>
+  <button id="button3" class="button">버튼3</button>
+</body>
+</html>

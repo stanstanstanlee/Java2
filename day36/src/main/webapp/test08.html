@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>키보드 이벤트</title>
+<style type="text/css">
+	.box{
+		background: lightgray;
+		padding: 10px;
+	}
+</style>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		//'내가마련해둔 영역에' == textarea 영역에
+		$('textarea').keydown(function(){
+								//'추가할요소'
+			$('.result').text($(this).val()); //js에서는 value라고 다 써야함
+		});
+	});
+
+</script>
+
+</head>
+<body>
+
+<textarea rows = "5" cols="30">
+
+</textarea>
+
+<hr>
+
+<div class="result"></div>
+
+</body>
+</html>

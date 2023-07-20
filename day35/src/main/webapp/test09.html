@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>윈도우객체</title>
+</head>
+<body>
+
+<h1>BOm : window 객체 </h1>
+<hr>
+<button type="button"> 새창 열기 </button>
+<button type="button"> 창 닫기 </button>
+
+<script type="text/javascript">
+	var newWindow; //스코프 이쓔: 여기다 선언
+	var btnArr=document.querySelectorAll('button'); //All을 썼으니까 배열이 돌아와요
+	
+	btnArr[0].addEventListener('click',openWindow);//'이벤트',함수명
+
+	function openWindow() {
+		  for (var i = 0; i < 2; i++) {
+		    var newWindow = window.open();
+		    newWindow.document.write('<h1>새로운 창의 페이지</h1>');
+		  }
+		}
+	
+	btnArr[1].addEventListener('click',closeWindow);//'이벤트',함수명
+
+	function closeWindow() {
+		if(newWindow != undefined){ //정의가 되어있어? 그럼 닫어 
+			newWindow.close();//스코프이슈가 있죵?? newWindow는 다른 function에서 생성한건데~~
+	
+		}
+	}
+	
+	
+</script>
+
+</body>
+</html>
