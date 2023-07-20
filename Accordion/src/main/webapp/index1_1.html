@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+	<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
+
+<style type="text/css">
+.aco_list{
+	list-style: none;
+	padding: 0;
+}
+.aco_list li{
+	border-bottom: 1px solid #ddd;
+}
+.aco_list li a{
+	display: block;
+	height: 50px;
+	padding-left: 20px;
+	line-height: 50px;
+	color: #222;
+	text-decoration: none;
+	transition: .2s;
+	background-color: #f8f8f8; /* 배경색을 변경합니다. */
+	border: 1px solid #ddd; /* 테두리를 추가합니다. */
+	border-radius: 5px; /* 버튼의 모서리를 둥글게 만듭니다. */
+}
+
+.aco_list li a:hover{
+	background-color: #222;
+	color: #fff;
+}
+
+.aco_list li .text_box{
+	display: none;
+	padding: 10px 40px;
+	color: #555;
+}
+</style>
+</head>
+
+<body>
+		<ul class="aco_list">
+		<li>
+			<a href="#">ONE</a>
+			<p class="text_box">
+				로렘입숨
+			</p>
+		</li>
+		<li>
+			<a href="#">TWO</a>
+			<p class="text_box">
+				로렘입숨
+			</p>
+		</li>
+		<li>
+			<a href="#">THREE</a>
+			<p class="text_box">
+				로렘입숨
+			</p>
+		</li>
+		<li>
+			<a href="#">FOUR</a>
+			<p class="text_box">
+				로렘입숨
+			</p>
+		</li>
+		</ul>
+		<script type="text/javascript">
+		$(function(){
+			const acoAco = $('.aco_list li a');
+			
+			acoAco.on('click',function(){
+				const item = $(this);
+				let speed = 500;
+				
+				acoAco.parent().find('.text_box').stop().slideUp(speed);
+				if(item.hasClass('active')){
+					item.find('.text_box').slideUp(speed);
+					item.removeClass('active');
+				} else {
+					item.parent().find('.text_box').stop().slideDown(speed);
+					acoAco.removeClass('active');
+					item.addClass('active');
+				}
+			});
+		})
+		</script>
+</body>
+</html>
